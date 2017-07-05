@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../avalon-1.5/avalon.js"></script>
+    <style>
+    b{
+        background: gray;
+        border-radius: 15px;
+        width:30px;
+        height:30px;
+        display:inline-block;
+        line-height:30px;
+        text-align:center;
+    }
+    b.toggle{
+        background:red;
+    }
+    .rect{
+        width:200px;
+        height:100px;
+        background:red;
+    }
+    </style>
+    <script>
+    var vm = avalon.define({
+        $id:'test',
+        selected:[],
+        array:avalon.range(0,12),
+        onClick:function(i){
+            if(vm.selected.indexOf(i) === -1){
+                vm.selected.push(i);
+            }else{
+                avalon.Array.remove(vm.selected,i)
+            }
+        }
+    });
+    var vm1 = avalon.define({
+        $id:'aaa',
+        a:false
+    })
+    </script>
+</head>
+<body ms-controller="test">
+    <p ms-each='array'>
+        <b ms-click="onClick($index)" ms-class="toggle:selected.indexOf($index)!==-1">{{$index}}</b>
+    </p>
+    <div ms-controller="aaa">
+        <p>点击显示隐藏<input type="radio" ms-duplex-checked='a'></p>
+        <div class="rect" ms-visible="a"></div>
+    </div>
+</body>
+</html>

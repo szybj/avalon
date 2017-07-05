@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ms-duplex</title>
+    <script src='avalon.1.x.js'></script>
+</head>
+<body ms-controller='aaa'>
+    <script>
+    avalon.ready(function(){
+        avalon.define({
+            $id:'aaa',
+            username:'张三',
+            password:'1234',
+            text:'hello word',
+            isCheck:false,
+            checkBall:[],
+            car:'',
+            select:[],
+            gender:'male',
+            onlinePayment:false
+
+        });
+    avalon.scan()
+    })
+    </script>
+<div >
+    <p>使用场景1</p>
+    <input type="text" name="" value="" ms-duplex='username'>
+    <input type="password" name="" value="" ms-duplex='password'>
+    <textarea rows="" cols="" ms-duplex='text'></textarea>
+    <ul>
+        <li>{{username}}</li>
+        <li>{{password}}</li>
+        <li>{{text}}</li>
+    </ul>
+    </br>
+    <p>使用场景2</p>
+    <input type="radio" ms-duplex='isCheck'>选项
+    <p>使用场景3</p>
+    <input type="checkbox" ms-duplex='checkBall' value="篮球">篮球
+    <input type="checkbox"  ms-duplex='checkBall' value="足球">足球
+    <input type="checkbox"  ms-duplex='checkBall' value="羽毛球">羽毛球
+    <p>{{checkBall}}</p>
+    <p>使用场景4</p>
+    <select ms-duplex='car'>
+        <option value="北京-天津">北京-天津</option>
+        <option value="北京-石家庄">北京-石家庄</option>
+        <option value="北京-上海">北京-上海</option>
+    </select>
+    <select multiple='true' ms-duplex='select'>
+        <option value="酒店">酒店</option>
+        <option value="医院">医院</option>
+        <option value="学校">学校</option>
+    </select>
+    车次:{{car}}</br>
+    选择:{{select}}
+    <p>使用场景5</p>
+    <input type="radio" ms-duplex-text='gender' value='male'>男
+    <input type="radio" ms-duplex-text='gender' value='female'>女
+    <p>{{gender}}</p>
+    <p>使用场景6</p>
+    是否在线支付：
+    <input type="radio" name='op' ms-duplex-boolean='onlinePayment' value='true'>是
+    <input type="radio" name='op' ms-duplex-boolean='onlinePayment' value='false'>否
+    <p>{{onlinePayment}}</p>
+</div>
+
+</body>
+</html>

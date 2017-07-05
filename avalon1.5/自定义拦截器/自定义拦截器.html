@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../avalon-1.5/avalon.js"></script>
+    <script>
+    avalon.define({
+        $id:'aaa',
+        a:111
+    })
+    avalon.duplexHooks.add100={
+        get:function(val){
+            return val;
+        },
+        set:function(val){
+            return val+100
+        }
+    }
+    </script>
+</head>
+<body>
+    <div ms-controller='aaa'>
+        <input type="" name="" value="" ms-duplex-number-add100="a">{{a}}
+    </div>
+</body>
+</html>

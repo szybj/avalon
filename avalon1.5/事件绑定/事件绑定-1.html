@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title> 
+    <script src="../avalon-1.5/avalon.js"></script>
+    <script>
+        var vm = avalon.define({
+            $id:'test',
+            status:'',
+            firstName:'张三',
+            field:'',
+            array:['aaa','bbb','ccc','ddd'],
+            check:function(ev){
+                vm.field = this.value + " " + ev.type;
+            },
+            callback:function(ev){
+                vm.status = ev.type;
+            },
+            argsClick:function(a,b,c){
+                alert([].slice.call(arguments).join(""));
+            },
+            loopClick:function(a,b){
+                alert(a+" "+b.type);
+            },
+            submit:function(){
+                var data = vm.$model;
+                if(window.JSON){
+                    setTimeout(function(){
+                        alert(JSON.stringify(data))
+                    })
+                }
+            }
+        })
+    </script>
+</head>
+<body>
+    <h3 style="text-align:center">ms-on-*</h3>
+    <fieldset ms-controller="test">
+        <legend>有关事件回调传参</legend>
+        <div ms-mouseenter="callback" ms-mouseleave="callback">{{status}}<br/>
+            <input type="" name="" value="" ms-on-input="check">{{field}}
+        </div>
+        <div ms-click="argsClick($event,100,firstName)">点我啊！！</div>
+        <div ms-each="array">
+            <p ms-click="loopClick(el,$event)">{{el}}</p>
+        </div>
+        <button type="button" ms-click="submit">点点点</button>
+    </fieldset>
+</body>
+</html>

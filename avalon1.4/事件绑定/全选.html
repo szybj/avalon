@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src='avalon.1.x.js'></script>
+</head>
+<body>
+    <script>
+   
+        var vm = avalon.define({
+            $id:'test',
+            data:[{checked:false},{checked:false},{checked:false}],
+            allchecked:false,
+            checkAll:function(){
+                var bool = vm.allchecked = this.checked;
+                vm.data.forEach(function(item){
+                    item.checked = bool;
+                })
+            },
+            checkOne:function(){
+                if(!this.checked){
+                    vm.allchecked = false;
+                }else{
+                    vm.allchecked = vm.data.every(function(el){
+                        console.log(el.checked)
+                        return el.checked;
+                    })
+                }
+            }
+        });
+   
+</script>
+<table border='1' ms-controller='test'>
+    <tr>
+        <td><input type="checkbox" name="" value="" ms-duplex-checked='allchecked' data-duplex-changed='checkAll'>全选</td>
+    </tr>
+    <tr ms-repeat='data'><td><input type="checkbox" name="" value="" ms-duplex-checked='el.checked' data-duplex-changed='checkOne'>XXXXXXXXXXXX</td></tr>
+</table>
+
+</body>
+</html>

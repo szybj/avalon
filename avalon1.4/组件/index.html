@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src='avalon.1.x.js'></script>
+</head>
+<body>
+<script>
+    require(["avalon.testui"], function() {
+        avalon.define({
+            $id: "test",
+            $opts: {
+                name: "这是控件的内容"
+            }
+        })
+        avalon.scan()
+    })
+</script>
+<div ms-controller="test" ms-widget="testui,ddd,$opts" >
+    <input ms-duplex="value" />
+    <button type="button" ms-click="plus">ClickMe</button>
+</div>
+</body>
+</html>

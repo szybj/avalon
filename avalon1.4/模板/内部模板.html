@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src='../avalon.1.x.js'></script>
+</head>
+<body>
+    <script type='avalon' id='tpl'>
+        hello,avalon{{6+5*4}}
+    </script>
+    <script>
+    avalon.define({
+        $id:'test',
+        n1:'内部模板',
+        fn1:function(){
+            alert('模板加载完了，可以对其进行加工')
+        },
+        fn2:function(){
+            alert('模板扫描完，可以隐藏loading')
+        }
+    })
+    </script>
+    <div ms-controller='test'>
+        <p>{{n1}}</p>
+        <!--由于ms-include绑定需要定义在一个元素节点上，它的作用仅仅是一个占位符，提供一个插入位置的容器。 如果用户想在插入内容后，去掉这容器，可以使用data-include-replace="true"-->
+        <div ms-include="'tpl'" data-include-rendered='fn2'  data-include-loaded='fn1' data-include-replace="true"></div>
+    </div>
+</body>
+</html>

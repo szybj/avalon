@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ma-controller</title>
+    <script src='avalon.1.x.js'></script>
+</head>
+<body>
+    <form ms-controller='aaa'>
+        <h2>布尔属性绑定(ms-attr-disabled,ms-attr-readonly)</h2>
+        <label for="">姓名</label>
+        <input type="text" name="" value="" ms-duplex='username' ms-attr-disabled='isDisabled' ></br>
+        <label for="">年龄</label>
+        <input type="text" name="" value=""  ms-duplex='age' ms-attr-readonly='readOnly'></br>
+        <label for="">性别</label>
+        <div>
+            <label for=""><input type="radio" value="女"  ms-duplex-string='sex' >女</label>
+            <label for=""><input type="radio" value="男"  ms-duplex-string='sex' >男</label>
+        </div>
+          <label for="">工作</label>
+        <div>
+          <select>
+              <option value="IT">IT</option>
+              <option value="销售" ms-attr-selected='selected'>销售</option>
+              <option value="产品">产品</option>
+          </select>
+        </div>
+        <label for="">兴趣爱好</label>
+         <label for=""><input type="checkbox" value="篮球" >篮球</label>
+         <label for=""><input type="checkbox" ms-attr-checked='checked' value="足球" >足球</label>
+         <label for=""><input type="checkbox"  ms-attr-checked='checked' value="羽毛球" >羽毛球</label>
+         <label for=""><input type="checkbox" value="乒乓球" >乒乓球</label>
+          <h2>字符串属性绑定(ms-attr-id,ms-attr-name,ms-attr-title,ms-src,ms-href,ms-attr-data-url)</h2>
+    </form>
+<script>
+    avalon.ready(function(){
+        avalon.define({
+            $id:'aaa',
+            username:'username',
+            isDisabled:true,
+            age:'20',
+            readOnly:true,
+            sex:'男',
+            selected:true,
+            checked:true
+        });
+        avalon.scan();
+    })
+</script>
+</body>
+</html>

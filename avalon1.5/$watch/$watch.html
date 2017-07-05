@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../avalon-1.5/avalon.js"></script>
+</head>
+<body>
+    <script>
+    var vm = avalon.define({
+        $id:'test',
+        array:[1,2,3,4],
+        arr:[{a:1},{a:2},{a:3},{a:4}],
+        obj:{
+            a:1,
+            b:2
+        },
+        a:{
+            b:{
+                c:{
+                    d:33
+                }
+            }
+        }
+    });
+    vm.$watch('array.*',function(a,b){
+        expect(a).to.be(6)
+        expect(b).to.be(2)
+    })
+    vm.$watch('arr.*.a',function(a,b){
+        expect(a).to.be(99)
+        expect(b).to.be(1)
+    })
+    vm.$watch('obj.*',function(a,b,c){
+        expect(a).to.be(111)
+        expect(b).to.be(1)
+    })
+    vm.$watch('a.*.c.d',function(a,b,c){
+        expect(a).to.be(88)
+        expect(b).to.be(33)
+    });
+    setTimeout(function(){
+        vm.array.set(1,6)
+        vm.arr[0].a = 99
+        vm.obj.a = 111
+        vm.a.b.c.d = 88
+    },100)
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ms-duplex</title>
+    <script src='avalon.1.x.js'></script>
+</head>
+<body>
+
+<fieldset ms-controller='test'>
+    <legend>有关事件回调的传参</legend>
+    <div ms-mouseenter='callback' ms-mouseleave='callback'>
+        {{status}}<br/>
+        <input type="text" name="" value="" ms-on-input='check'>{{field}}
+    </div>
+    <div ms-click='argsClick($event,900,firstName)'>点我呀！！！</div>
+    <div ms-each-el="array">
+        <p ms-click='loopClick(el,$event)'>{{el}}</p>
+    </div>
+    <button type="button" ms-click='submit'>获取所有数据</button>
+</fieldset>
+   <script>
+   avalon.ready(function(){
+      var vm =  avalon.define({
+           $id:'test',
+           status:'event-type',
+           callback:function(e){
+               vm.status = e.type
+           },
+           field:'value-event-type',
+           check:function(e){
+               vm.field = this.value + ' ' + e.type;
+           },
+           firstName:'felix',
+           argsClick:function(a,b,c){
+               alert([].slice.call(arguments).join(''));
+           },
+           array:['aaa','bbb','ccc'],
+           loopClick:function(value,ev){
+               alert(value + " " + ev.type);
+           },
+           submit:function(){
+               var data = vm.$model;
+               alert(JSON.stringify(data))
+           }
+       });
+       avalon.scan();
+   })
+   </script>
+</body>
+</html>

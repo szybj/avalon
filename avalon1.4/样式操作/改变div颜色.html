@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ma-controller</title>
+    <script src='avalon.1.x.js'></script>
+    <style>
+    #box{
+        width:300px;
+        height:200px;
+    }
+    </style>
+</head>
+<body ms-controller="aaa">
+      <div id="box"  ms-css-background="background"></div>
+      <select ms-duplex='background'>
+          <option value="red" ms-attr-selected='selected'>红色</option>
+        <option value="green">绿色</option>
+        <option value="yellow">黄色</option>
+        <option value="pink">粉红</option>
+      </select>
+  <script>
+  avalon.ready(function(){
+      var vm = avalon.define({
+          $id:'aaa',
+          background:'red',
+          selected:true
+      })
+      vm.$watch('background',function(v){
+          vm.background = v;
+      })
+      avalon.scan();
+  })
+  </script>
+
+</body>
+</html>

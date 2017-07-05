@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../avalon-1.5/avalon.js"></script>
+    <script>
+    var num = 0;
+    var vm = avalon.define({
+        $id:'test',
+        str1:'1',
+        str2:'2',
+        str3:'3',
+        click:function(){
+            vm.str1 = "xxxxxxxxxxxxxxxx"+(num++);
+        },
+         click1:function(){
+            vm.str2 = "xxxxxxxxxxxxxxxx"+(num++);
+        },
+         click2:function(){
+            vm.str3 = "xxxxxxxxxxxxxxxx"+(num++);
+        }
+
+    })
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>一个元素绑定多个相同事件的回调</legend>
+        <div ms-controller="test">
+            <div ms-click='click' ms-click-1="click1" ms-click-2="click2">点我</div>
+            <div>{{str1}}</div>
+            <div>{{str2}}</div>
+            <div>{{str3}}</div>
+        </div>
+    </fieldset>
+</body>
+</html>

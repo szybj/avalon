@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src='avalon.1.x.js'></script>
+    <script>
+    var vm = avalon.define({
+        $id:'test',
+        options:['name','size','date'],
+        data:[
+            {name:'aaaa',size:123,date:Date.now()+90},
+            {name:'bbbb',size:56,date:Date.now()-90},
+            {name:'cccc',size:782,date:Date.now()+100},
+            {name:'dddd',size:678,date:Date.now()-300}
+        ],
+        selected:'name',
+        trend:1
+    });
+    vm.$watch("selected",function(v){
+        var t = parseFloat(vm.trend);
+        vm.data.sort(function(a,b){
+            var ret = a[v] > b[v] ?1:-1;
+            return t*ret;
+        })
+    })
+    vm.$watch("trend",function(t){
+        var v = vm.selected,t = parseFloat(t);
+        vm.data.sort(function(a,b){
+            var ret = a[v] > b[v] ?1:-1;
+            return t*ret;
+        })
+    })
+    </script>
+</head>
+
+<body ms-controller='test'>
+<p>
+    <select ms-duplex='selected'>
+        <option ms-repeat='options'>{{el}}</option>
+    </select>
+    <select ms-duplex='trend'>
+        <option value="1">up</option>
+        <option value="-1">down</option>
+    </select>
+</p>
+<table width='500px' border='1'>
+    <tr>
+        <th>name</th>
+        <th>size</th>
+        <th>date</th>
+    </tr>
+    <tr ms-repeat='data'>
+        <td>{{el.name}}</td>
+        <td>{{el.size}}</td>
+        <td>{{el.date}}</td>
+    </tr>
+</table>
+</body>
+</html>

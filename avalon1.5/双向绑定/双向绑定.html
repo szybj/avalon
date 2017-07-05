@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../avalon-1.5/avalon.js"></script>
+    <script>
+        var vm = avalon.define({
+            $id:'test',
+            text:'XXXX',
+            textcb:'',
+            textchange:function(a){
+                vm.textcb = a;
+            },
+            radio:'radio',
+            radiocb:'',
+            radiochange:function(a){
+                vm.radiocb = a;
+            },
+            select: "1111",
+            selectcb: "",
+            selectchange: function(a) {
+               vm.selectcb = a
+            },
+            arrays:['1111','2222','3333','4444','5555']
+        })
+    </script>
+</head>
+<body ms-controller="test">
+    <h3>data-duplex-changed回调</h3>
+    <div>
+        <input type="" name="" value="" ms-duplex="text" data-duplex-changed="textchange">{{textcb}}
+    </div>
+    <div>
+        <input type="radio" name="" value="" ms-duplex-checked="radio" data-duplex-changed="radiochange">{{radiocb}}
+    </div>
+    <div>
+        <select ms-each="arrays" ms-duplex="select" data-duplex-changed="selectchange">
+            <option>{{el}}</option>
+         
+        </select>{{selectcb}}</div>
+</body>
+</html>

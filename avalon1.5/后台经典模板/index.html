@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>经典后台模板</title>
+    <style>
+    div{
+        width:200px;
+        height:100px;
+    }
+    </style>
+    <script src="../avalon-1.5/avalon.js"></script>
+    <script>
+    avalon.templateCache = {
+        aaa: "<div>这里是非常复杂的HTML结构1</div>",
+        bbb: "<div>这里是非常复杂的HTML结构2</div>",
+        ccc: "<div>这里是非常复杂的HTML结构3</div>",
+        ddd: "<div>这里是非常复杂的HTML结构4</div>"
+    }
+    var vm = avalon.define({
+        $id:'root',
+        tabs:["aaa","bbb","ccc","ddd"],
+        curTab:"aaa",
+        loading:'',
+        switchTab:function(el){
+            vm.curTab = el;
+        },
+        showLoading:function(){},
+        hideLoading:function(){}
+    })
+    </script>
+</head>
+<body ms-controller="root">
+    <table>
+        <tr>
+            <td>
+                <ul>
+                    <li ms-repeat='tabs' ms-click="switchTab(el)">{{el}}</li>
+                </ul>
+            </td>
+            <td>
+                <div ms-include-src="curTab" ></div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ma-controller</title>
+    <script src='avalon.1.x.js'></script>
+    <style>
+  
+    </style>
+</head>
+<body ms-controller="aaa">
+      <div ms-css-width="w" ms-css-height="h" ms-css-background="background" ms-click='click'></div>
+      <p>{{w}} X {{h}}</p>
+      <p>W:<input type="text" ms-duplex='w'></input></p>
+      <p>H:<input type="text" ms-duplex='h'></input></p>
+  <script>
+  avalon.ready(function(){
+      var vm = avalon.define({
+          $id:'aaa',
+          w:100,
+          h:100,
+          background:'red',
+          click:function(){
+              vm.w = parseFloat(vm.w) + 10;
+              vm.h = parseFloat(vm.h) + 10;
+          }
+      })
+      avalon.scan();
+  })
+  </script>
+
+</body>
+</html>
